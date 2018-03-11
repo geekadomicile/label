@@ -1,0 +1,53 @@
+@page{
+    size:102mm 151mm;
+    margin:0;
+}
+@media print{
+    html, body{
+        width:102mm;
+        height:151mm;
+    }
+}
+
+html{
+    font-family:"Courier New";
+    font-size:10pt;
+}
+html,body{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+}
+label{
+    display:block;
+}
+div{
+    position:relative;
+}
+.label, .label>img, svg {
+    width: 10.2cm;
+    height: 13.29cm;
+}
+.proof>img{
+    width: 10.2cm;
+}
+svg, .label>img{
+    top:0;
+    position:absolute;
+}
+span, div{
+    display:none;
+}
+.rot270 {
+    -webkit-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* Safari */
+    -moz-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* Firefox 3.6 Firefox 4 */
+    -ms-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* IE9 */
+    -o-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* Opera */
+    transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* W3C */  
+    -webkit-transform-origin: right top;
+    -moz-transform-origin: top right;
+    -ms-transform-origin: top right;
+    -o-transform-origin: top right;
+    transform-origin: top right;
+}
