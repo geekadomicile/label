@@ -33,14 +33,9 @@ do
 	DEST=../$DESTDIR/$UNIQUENAME
 	mkdir $DEST
 
-	# Get first tracking barcode
-	#convert -crop 1179x1957+53+30 -density 205 $f.png $DEST/tracking.png
-	#convert -crop 1179x2127+53+30 -density 205 $f.png $DEST/tracking.png
-	#convert -crop 1179x987+53+30 -density 205 $f.png $DEST/tracking.png
-	#convert -crop 1179x1007+53+30 -density 205 $f.png $DEST/tracking.png
+	# Get first half of label
 	convert -crop 1179x1037+53+30 -density 205 $f.png $DEST/tracking.png
-	#convert -crop 1179x987+53+1217 -density 205 $f.png $DEST/tracking2.png
-	#convert -crop 1179x1027+53+1217 -density 205 $f.png $DEST/tracking2.png
+	# Get second half of label
 	convert -crop 1179x1037+53+1227 -density 205 $f.png $DEST/tracking2.png
 
 

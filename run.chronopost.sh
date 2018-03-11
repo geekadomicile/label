@@ -32,7 +32,7 @@ do
 	DEST=../$DESTDIR/$UNIQUENAME
 	mkdir $DEST
 
-	# Get proof of dispatch
+	# Get proof of dispatch and rotate
 	convert -crop 1629x1183+110+1080 -density 205 $f.png $DEST/proof.png
     mogrify -rotate 90 $DEST/proof.png
 	# Get first tracking barcode
