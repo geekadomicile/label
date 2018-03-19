@@ -19,24 +19,39 @@ html,body{
     margin:0;
     padding:0;
 }
+img{
+    border:0;
+    padding:0;
+    margin:0;
+}
 label{
     display:block;
 }
 div{
     position:relative;
 }
-.label, .label>img, svg {
-    width: 10.2cm;
-    height: 13.29cm;
+.label{
+    width:10.2cm;
 }
-.proof>img{
-    width: 10.2cm;
+.label-chronopost, .label-chronopost>img, svg{
+    width:10.2cm;
+    height:13.29cm;
 }
-svg, .label>img{
+.proof-chronopost>img{
+    width:10.2cm;
+}
+.label-dhl>img:nth-child(1){
+    height:7.4cm;
+}
+.label-dhl>img:nth-child(2){
+    height:7.4cm;
+}
+
+svg{
     top:0;
     position:absolute;
 }
-span, div{
+span, div, svg{
     display:none;
 }
 .rot270 {
@@ -50,4 +65,63 @@ span, div{
     -ms-transform-origin: top right;
     -o-transform-origin: top right;
     transform-origin: top right;
+}
+
+.label-laPoste>div{
+    display:block;
+}
+#content{
+    top: 0.3cm;
+    left: 0.3cm;
+    width: 14.8cm;  
+    height: 9.8cm;  
+    border: none;
+}  
+#from, #to, svg, #stamp>img, #tracking>img {
+    width: 7cm;
+}
+#from, #to, svg {
+    height: 4cm;
+}
+
+#from, #from>svg, #stamp {
+    top:  0cm;
+}
+#tracking, #to {
+    top:  5.5cm;
+}
+
+#from, #from>svg, #tracking {
+    left: 0cm;
+}
+#stamp, #to {
+    left: 7.5cm;
+}
+
+.title {
+    font-weight:bold;
+}
+.title, .address{
+    position: relative;
+}
+#to .address{
+    white-space: pre-wrap;
+}
+#itemName{
+    color:#000;
+}
+.logo{
+    position:absolute;
+    width:164.562px;
+    height:121.312px;
+    top:0;
+    left:0;
+    background-image:url("processed/2017-03-22-10:00:38.947134574.pdf.FRANCE.1L01949344316.Max.20g.1,10.06092017-.ABNWKD5ULD/stamp.png");
+   background-size:265.9px;
+   background-repeat: no-repeat;
+   background-
+}
+label, input{
+    display:block;
+    clear:both;
 }

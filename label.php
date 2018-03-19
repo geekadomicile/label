@@ -7,7 +7,7 @@ $label_id = 'null';
 if(isset($_GET['label_id'])){
     $label_id = $_GET["label_id"];
     $carrier = label_to_carrier($label_id);
-    $runPath = 'run'.$carrier.'.sh';
+    $runPath = 'run.'.$carrier.'.sh';
 }
 $client = '';
 if(isset($_GET['client']) && $_GET['client']){
@@ -20,9 +20,10 @@ if(isset($_GET['itm']) && $_GET['itm']){
 
 function label_to_carrier($label_id){
     $re = array(
-        'chronopost'=> '/[PX]\w+\d+\w{2}/',
-        'laPoste'   => '/1L\d{11}/',
-        'colissimo' => '/[C]\w+\d+\w{2}|[2-9]\w\d{11}/'
+        'chronopost'=> '/^[PX]\w+\d+\w{2}$/',
+        'dhl'       => '/^\d{10}$/',
+        'laPoste'   => '/^1L\d{11}$/',
+        'colissimo' => '/^[C]\w+\d+\w{2}|[2-9]\w\d{11}$/'
     );
     foreach($re as $k=>$v){
         if(preg_match($v,$label_id)){
@@ -46,12 +47,16 @@ if(!$count){
 }else{
     $show[$client] = true;
     if($client != 'retrait'){
-        $show['label'] = true;
+        $show['label-'.$carrier] = true;
+        if($carrier == 'colissimo'){
+            $show['proof-'.$carrier] = true;
+        }
     }
     if($client != 'expedition'){
-        $show['proof'] = true;
+        $show['proof-'.$carrier] = true;
+        $show['blanks-'.$carrier] = true;
     }
-    $show['item'] = true;
+    $show['item-'.$carrier] = true;
 }
 
 function page_title($label_id){
@@ -69,7 +74,7 @@ function print_visibility($show){
 }
 
 function page_break($show){
-    $str='.item{page-break-';
+    $str='.item-'.$carrier.'{page-break-';
     if(array_key_exists('expedition',$show)){
         $str.= 'after';
     }
@@ -118,7 +123,7 @@ echo page_break($show);
         <label for="itm">Références d'objets à imprimer :</label>
         <input id="itm" name="itm" value="" type="text"></input>
         
-        <label for="Expedition">Expedition</label>
+        <label for="expedition">Expedition</label>
         <input id="expedition" name="client" value="expedition" type="radio" checked></input>
 
         <label for="retrait">Retrait client</label>
@@ -126,14 +131,19 @@ echo page_break($show);
 
         <label for="depot">Depot client</label>
         <input id="depot" name="client" value="depot" type="radio"></input>
+
+        <label for="address">Adresse de livraison :</label>
+        <textarea id="address" name="address" rows="6" cols="40"></textarea>
+
         <hr>
+
         <input type="submit"></input>
     </form>
 </div>
 
-<div class="label">
-    <img src="<?php echo $lastDir; ?>/tracking.png"></img>
-    <svg>
+<div class="label label-chronopost label-colissimo">
+    <img class="chronopost" src="<?php echo $lastDir; ?>/tracking.png"></img>
+    <svg class="blanks-chronopost">
         <rect style="fill:white;" width="4.5cm" height="0.7cm"  x="0.30cm" y="6.35cm" />
         <rect style="fill:white;" width="3.05cm" height="3.05cm"    x="7.05cm" y="4.35cm" />
         <rect style="fill:white;" width="10cm" height="5.65cm"  x="0.10cm" y="7.50cm" />
@@ -142,13 +152,46 @@ echo page_break($show);
     </svg>
 </div>
 
-<div class="item">
+<div class="label label-dhl">
+    <img class="dhl" src="<?php echo $lastDir; ?>/tracking.png"></img>
+    <img class="dhl" src="<?php echo $lastDir; ?>/tracking2.png"></img>
+</div>
+
+<div class="item-chronopost item-colissimo">
     <span class="retrait">Preuve de retrait par le client de :</span>
     <span class="depot">Preuve de dépôt par le client de : </span>
     <?php echo $itm; ?>
 </div>
 
-<div class="proof">
+<div class="label-laPoste">  
+ok
+    <div id="from">
+        <div class="title">From / Adresse d\'expédition :</div>
+        <div class="address">
+            Geekadomicile.com<br/>62 avenue des Etats-Unis<br/>78000 Versailles<br/>YVELINES<br/>France<br/>+33977555556<br/>laPoste@geekadomicile.com
+        </div>
+        <div id="itemName"><?php echo $itm; ?>
+        </div>
+        <svg>
+            <line x1="0" y1="0" x2="7cm" y2="3.1cm" style="stroke:rgb(50,50,50);stroke-width:1" />
+            <line x1="0" y1="3.1cm" x2="7cm" y2="0" style="stroke:rgb(50,50,50);stroke-width:1" />
+        </svg>
+    </div>
+    <div id="stamp">
+    <img src="<?php echo $lastDir; ?>/stamp.png"></img>
+        <div class="logo"></div>
+    </div>
+    <div id="tracking">
+        <img src="<?php echo $lastDir ?>/tracking.png"></img>
+    </div>
+    <div id="to">
+        <div class="title">To / Adresse de livraison :</div>
+        <pre class="address"><textarea id="address" rows="6" cols="40"><?php echo $address ?></textarea>
+        </pre>
+    </div>
+</div>  
+
+<div class="proof-chronopost proof-colissimo">
     <img src="<?php echo $lastDir; ?>/proof.png"></img>
 </div>
 

@@ -30,17 +30,16 @@ do
 	UNIQUENAME=$f.$TRACKINGNUMBER
 
 	DEST=../$DESTDIR/$UNIQUENAME
-	mkdir $DEST
+	mkdir -p $DEST
 
 	# Get proof of dispatch and rotate
-	convert -crop 1629x1183+110+1080 -density 205 $f.png $DEST/proof.png
+	convert -crop 1472x1045+1876+1294 -density 205 $f.png $DEST/proof.png
     mogrify -rotate 270 $DEST/proof.png
 	# Get first tracking barcode
-	convert -crop 1312x1710+2130+382 -density 205 $f.png $DEST/tracking.png
+	convert -crop 1182x1417+236+379 -density 205 $f.png $DEST/tracking.png
 
 	mv $f.txt	$DEST/
 	mv $f		$DEST/
 	rm $f.png
 done
 cd ..
-ls -l $DESTDIR
