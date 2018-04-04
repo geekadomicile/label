@@ -2,6 +2,10 @@
 $uploadDir = "upload";
 $processedDir = "processed";
 $show = array();
+$pWidth = 102;
+$pHeight = 151;
+$pWidth = 86;
+$pHeight = 141;
 
 $label_id = 'null';
 if(isset($_GET['label_id'])){
@@ -16,6 +20,10 @@ if(isset($_GET['client']) && $_GET['client']){
 $itm = '';
 if(isset($_GET['itm']) && $_GET['itm']){
     $itm = $_GET['itm'];
+}
+$address = '';
+if(isset($_GET['address']) && $_GET['address']){
+    $address = $_GET['address'];
 }
 
 function label_to_carrier($label_id){
@@ -107,6 +115,39 @@ function print_js($show){
 <link rel="stylesheet" type="text/css" href="label.css">
 <title>label <?php echo page_title($label_id) ?></title>
 <style>
+@page{
+<?php
+if($carrier=='laPoste'){
+    echo 'size: '.$pHeight.'mm '.$pWidth.'mm';
+}else{
+    echo 'size: '.$pWidth.'mm '.$pHeight.'mm';
+}
+?>
+}
+@media print{
+    html, body{
+<?php
+if($carrier=='laPoste'){
+    echo 'width: '.$pHeight.'mm;';
+    echo 'height: '.$pWidth.'mm';
+}else{
+    echo 'width: '.$pWidth.'mm';
+    echo 'height: '.$pHeight.'mm;';
+}
+?>
+    }
+}
+html,body{
+<?php
+if($carrier=='laPoste'){
+    echo 'width: '.$pHeight.'mm;';
+    echo 'height: '.$pWidth.'mm';
+}else{
+    echo 'width: '.$pWidth.'mm';
+    echo 'height: '.$pHeight.'mm;';
+}
+?>
+}
 <?php
 echo print_visibility($show);
 echo page_break($show);
@@ -164,9 +205,8 @@ echo page_break($show);
 </div>
 
 <div class="label-laPoste">  
-ok
     <div id="from">
-        <div class="title">From / Adresse d\'expédition :</div>
+        <div class="title">From / Adresse d'expédition :</div>
         <div class="address">
             Geekadomicile.com<br/>62 avenue des Etats-Unis<br/>78000 Versailles<br/>YVELINES<br/>France<br/>+33977555556<br/>laPoste@geekadomicile.com
         </div>
@@ -178,7 +218,7 @@ ok
         </svg>
     </div>
     <div id="stamp">
-    <img src="<?php echo $lastDir; ?>/stamp.png"></img>
+        <img src="<?php echo $lastDir; ?>/stamp.png"></img>
         <div class="logo"></div>
     </div>
     <div id="tracking">

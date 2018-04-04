@@ -1,23 +1,14 @@
 @page{
-    size:102mm 151mm;
     margin:0;
+    padding:0;
 }
-@media print{
-    html, body{
-        width:102mm;
-        height:151mm;
-    }
+html,body{
+    margin:0;
+    padding:0;
 }
-
 html{
     font-family:"Courier New";
     font-size:10pt;
-}
-html,body{
-    width:100%;
-    height:100%;
-    margin:0;
-    padding:0;
 }
 img{
     border:0;
@@ -55,19 +46,18 @@ span, div, svg{
     display:none;
 }
 .rot270 {
-    -webkit-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* Safari */
-    -moz-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* Firefox 3.6 Firefox 4 */
-    -ms-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* IE9 */
-    -o-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* Opera */
-    transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* W3C */  
-    -webkit-transform-origin: right top;
-    -moz-transform-origin: top right;
-    -ms-transform-origin: top right;
-    -o-transform-origin: top right;
-    transform-origin: top right;
+    #-webkit-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* Safari */
+    #-moz-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* Firefox 3.6 Firefox 4 */
+    #-ms-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* IE9 */
+    #-o-transform: translateX(-100%) translateY(-100%) rotate(-90deg); /* Opera */
+    transform: translateX(100%) translateY(100%) rotate(90deg); /* W3C */  
+    #-webkit-transform-origin: right top;
+    #-moz-transform-origin: top right;
+    #-ms-transform-origin: top right;
+    #-o-transform-origin: top right;
+    transform-origin: top left;
 }
-
-.label-laPoste>div{
+.label-laPoste div{
     display:block;
 }
 #content{
@@ -77,35 +67,24 @@ span, div, svg{
     height: 9.8cm;  
     border: none;
 }  
-#from, #to, svg, #stamp>img, #tracking>img {
+#from, #to, svg, #stamp>img, #tracking, #tracking>img {
     width: 7cm;
+    float:left;
 }
 #from, #to, svg {
     height: 4cm;
 }
-
-#from, #from>svg, #stamp {
-    top:  0cm;
-}
-#tracking, #to {
-    top:  5.5cm;
-}
-
-#from, #from>svg, #tracking {
-    left: 0cm;
-}
-#stamp, #to {
-    left: 7.5cm;
-}
-
 .title {
     font-weight:bold;
 }
 .title, .address{
-    position: relative;
+    position:relative;
+}
+#tracking{
+    clear:left;
 }
 #to .address{
-    white-space: pre-wrap;
+    white-space:pre-wrap;
 }
 #itemName{
     color:#000;
@@ -115,11 +94,10 @@ span, div, svg{
     width:164.562px;
     height:121.312px;
     top:0;
-    left:0;
+    left:7cm;
     background-image:url("processed/2017-03-22-10:00:38.947134574.pdf.FRANCE.1L01949344316.Max.20g.1,10.06092017-.ABNWKD5ULD/stamp.png");
-   background-size:265.9px;
-   background-repeat: no-repeat;
-   background-
+    background-size:265.9px;
+    background-repeat: no-repeat;
 }
 label, input{
     display:block;
