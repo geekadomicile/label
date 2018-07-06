@@ -4,8 +4,6 @@ $processedDir = "processed";
 $show = array();
 $pWidth = 102;
 $pHeight = 151;
-$pWidth = 86;
-$pHeight = 141;
 
 $label_id = 'null';
 if(isset($_GET['label_id'])){
@@ -30,7 +28,7 @@ function label_to_carrier($label_id){
     $re = array(
         'chronopost'=> '/^[PX]\w+\d+\w{2}$/',
         'dhl'       => '/^\d{10}$/',
-        'laPoste'   => '/^1L\d{11}$/',
+        'laPoste'   => '/^1L\d{11}|LG\d{9}FR$/',
         'colissimo' => '/^[C]\w+\d+\w{2}|[2-9]\w\d{11}$/'
     );
     foreach($re as $k=>$v){
@@ -56,9 +54,6 @@ if(!$count){
     $show[$client] = true;
     if($client != 'retrait'){
         $show['label-'.$carrier] = true;
-        if($carrier == 'colissimo'){
-            $show['proof-'.$carrier] = true;
-        }
     }
     if($client != 'expedition'){
         $show['proof-'.$carrier] = true;
@@ -128,10 +123,10 @@ if($carrier=='laPoste'){
     html, body{
 <?php
 if($carrier=='laPoste'){
-    echo 'width: '.$pHeight.'mm;';
-    echo 'height: '.$pWidth.'mm';
+    echo 'width: 141mm;';
+    echo 'height: 86mm;';
 }else{
-    echo 'width: '.$pWidth.'mm';
+    echo 'width: '.$pWidth.'mm;';
     echo 'height: '.$pHeight.'mm;';
 }
 ?>
@@ -140,10 +135,10 @@ if($carrier=='laPoste'){
 html,body{
 <?php
 if($carrier=='laPoste'){
-    echo 'width: '.$pHeight.'mm;';
-    echo 'height: '.$pWidth.'mm';
+    echo 'width: 141mm;';
+    echo 'height: 86mm;';
 }else{
-    echo 'width: '.$pWidth.'mm';
+    echo 'width: '.$pWidth.'mm;';
     echo 'height: '.$pHeight.'mm;';
 }
 ?>

@@ -20,12 +20,14 @@ do
 	convert -density 300 $f $f.png
 	# make txt file
 	pdftotext $f $f.txt
+    cat $f.txt
 
 	# trim
 	sed -i -- 's/\ //g' $f.txt
 
 	# parse text data
-    TRACKINGNUMBER="$(grep -m 1 -ho '[A-Z]\{2\}[0-9]\{9\}FR\|[0-9][A-Z]\{1\}[0-9]\{11\}$' $f.txt)"
+    TRACKINGNUMBER="$(grep -m 1 -ho '[A-Z]\{2\}[0-9]\{9\}FR\|[0-9][A-Z][0-9]\{11\}$' $f.txt)"
+    echo $TRACKINGNUMBER
 	
 	UNIQUENAME=$f.$TRACKINGNUMBER
 

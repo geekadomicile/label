@@ -57,7 +57,8 @@ span, div, svg{
     #-o-transform-origin: top right;
     transform-origin: top left;
 }
-.label-laPoste div{
+.label-laPoste div,
+.label-laPoste svg{
     display:block;
 }
 #content{
@@ -67,11 +68,11 @@ span, div, svg{
     height: 9.8cm;  
     border: none;
 }  
-#from, #to, svg, #stamp>img, #tracking, #tracking>img {
+#from, #to, .label-laPoste svg, #stamp>img, #tracking, #tracking>img {
     width: 7cm;
     float:left;
 }
-#from, #to, svg {
+#from, #to, .label-laPoste svg {
     height: 4cm;
 }
 .title {
@@ -91,12 +92,12 @@ span, div, svg{
 }
 .logo{
     position:absolute;
-    width:164.562px;
-    height:121.312px;
-    top:0;
-    left:7cm;
-    background-image:url("processed/2017-03-22-10:00:38.947134574.pdf.FRANCE.1L01949344316.Max.20g.1,10.06092017-.ABNWKD5ULD/stamp.png");
-    background-size:265.9px;
+    width:114.562px;
+    height:111.312px;
+    top:3mm;
+    left:79mm;
+    background-image:url("logo.png");
+    background-size:100.9px;
     background-repeat: no-repeat;
 }
 label, input{
