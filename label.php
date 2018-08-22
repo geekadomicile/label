@@ -55,7 +55,10 @@ if(!$count){
     if($client != 'retrait'){
         $show['label-'.$carrier] = true;
     }
-    if($client != 'expedition'){
+    if($client == "expedition" && $carrier == "chronopost"){
+        $show['proof-'.$carrier] = true;
+    }
+    elseif($client != 'expedition'){
         $show['proof-'.$carrier] = true;
         $show['blanks-'.$carrier] = true;
     }
